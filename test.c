@@ -6,7 +6,6 @@
         keep = !keep, count++) \
       for(item = (array) + count; keep; keep = !keep)
 
-#include <stdio.h>
 #include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
