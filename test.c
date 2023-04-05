@@ -62,10 +62,10 @@ int main() {
    init();
 
    // TEST isCodeInCodesByName()
-   printf("isCodeInCodesByName 1: %d\n", isCodeInCodesByName("Clear glass", "ABGCP")); // 1
-   printf("isCodeInCodesByName 2: %d\n", isCodeInCodesByName("Clear glass", "ABCP")); // 0
+   printf("isCodeInCodesByName 1: %d\n", isCodeInCodesByName("Clear glass", "ABGCP"));       // 1
+   printf("isCodeInCodesByName 2: %d\n", isCodeInCodesByName("Clear glass", "ABCP"));        // 0
    printf("isCodeInCodesByName 3: %d\n", isCodeInCodesByName("Biodegradable waste", "BCP")); // 1
-   printf("isCodeInCodesByName 4: %d\n", isCodeInCodesByName("Blah Blah Blah", "APBGCT")); // 0
+   printf("isCodeInCodesByName 4: %d\n", isCodeInCodesByName("Blah Blah Blah", "APBGCT"));   // 0
 						
    printf("\n\n");
 
