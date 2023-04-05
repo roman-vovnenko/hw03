@@ -20,7 +20,7 @@ void init(){
   //g_hash_table_destroy(binCodes);
 }
 
-int isType(char type_name[], char codes[] ) {
+int isCodeInCodesByName(char type_name[], char codes[] ) {
 
   //Find the code by name
   char* binCode = g_hash_table_lookup(binCodes,type_name);
@@ -31,17 +31,30 @@ int isType(char type_name[], char codes[] ) {
 
 }
 
+int isCodeInCodes(char code, char codes[]) {
+  
+  return (strchr(codes, code) != NULL);
+}
+
+int isCodes
+
 
 int main() {
 
    init();
-   printf("Is type code: %d\n", isType("Clear glass", "ABGCP")); // 1
 
-   printf("Is type code: %d\n", isType("Clear glass", "ABCP")); // 0
+   // TEST isCodeInCodesByName()
+   printf("Is type code: %d\n", isCodeInCodesByName("Clear glass", "ABGCP")); // 1
+   printf("Is type code: %d\n", isCodeInCodesByName("Clear glass", "ABCP")); // 0
+   printf("Is type code: %d\n", isCodeInCodesByName("Biodegradable waste", "BCP")); // 1
+   printf("Is type code: %d\n", isCodeInCodesByName("Blah Blah Blah", "APBGCT")); // 0
+						
 
-   printf("Is type code: %d\n", isType("Biodegradable waste", "BCP")); // 1
 
-   printf("Is type code: %d\n", isType("Blah Blah Blah", "APBGCT")); // 0
+   // TEST isCodeInCodes()
+   printf("Is type code: %d\n", isCodeInCodes("G", "APBGCT")); // 1
+   printf("Is type code: %d\n", isCodeInCodes("L", "APBGCT")); // 0
+   printf("Is type code: %d\n", isCodeInCodes("J", "APBGCT")); // 0
 
    return 0;
 }
