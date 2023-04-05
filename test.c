@@ -16,18 +16,18 @@ void init(){
   g_hash_table_insert(binCodes,"Clear glass","G");
   g_hash_table_insert(binCodes,"Colored glass","C");
   g_hash_table_insert(binCodes,"Textile","T");
-
+  //printf("There are %d bin types\n", g_hash_table_size(binCodes));
   //g_hash_table_destroy(binCodes);
 }
 
 int isType(char type_name[], char codes[] ) {
 
-  // printf("There are %d bin types\n", g_hash_table_size(binCodes));
+  //Find the code by name
   char* binCode = g_hash_table_lookup(binCodes,type_name);
 
-  // printf("The code is %s\n", (char *)binCode); 
+  //printf("The code is %s\n", (char *)binCode); 
 
-  return (strchr( codes, binCode[0]) != NULL);
+  return (binCode != NULL && strchr(codes, binCode[0]) != NULL);
 
 }
 
@@ -35,7 +35,13 @@ int isType(char type_name[], char codes[] ) {
 int main() {
 
    init();
-   printf("Is type code: %d\n", isType("Clear glass", "ABGCP"));
+   printf("Is type code: %d\n", isType("Clear glass", "ABGCP")); // 1
+
+   printf("Is type code: %d\n", isType("Clear glass", "ABCP")); // 0
+
+   printf("Is type code: %d\n", isType("Biodegradable waste", "BCP")); // 1
+
+   printf("Is type code: %d\n", isType("Blah Blah Blah", "APBGCT")); // 0
 
    return 0;
 }
