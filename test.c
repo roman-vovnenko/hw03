@@ -12,7 +12,7 @@
 #include <string.h>
 
 //cc `pkg-config --cflags glib-2.0` test.c -o test `pkg-config --libs glib-2.0` && ./test
-
+//gcc -o test test.c `pkg-config --libs --cflags glib-2.0` && ./test
 
 static GHashTable* binCodes; 
 
