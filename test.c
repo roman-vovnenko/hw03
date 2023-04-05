@@ -1,3 +1,12 @@
+#define foreach(item, array) \
+    for(int keep = 1, \
+            count = 0,\
+            size = sizeof (array) / sizeof *(array); \
+        keep && count != size; \
+        keep = !keep, count++) \
+      for(item = (array) + count; keep; keep = !keep)
+
+#include <stdio.h>
 #include <glib.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,25 +45,41 @@ int isCodeInCodes(char code, char codes[]) {
   return (strchr(codes, code) != NULL);
 }
 
-int isCodes
+int areCodesIncluded(char codes1[], char codes2[]){
 
+   int i;
+
+   for (i = 0; i < strlen(codes1); i++) {
+        //printf("value: %d\n", isCodeInCodes(codes1[i], codes2));
+	if(!isCodeInCodes(codes1[i], codes2)) return 0;
+   }
+
+  return 1;  
+}
 
 int main() {
 
    init();
 
    // TEST isCodeInCodesByName()
-   printf("Is type code: %d\n", isCodeInCodesByName("Clear glass", "ABGCP")); // 1
-   printf("Is type code: %d\n", isCodeInCodesByName("Clear glass", "ABCP")); // 0
-   printf("Is type code: %d\n", isCodeInCodesByName("Biodegradable waste", "BCP")); // 1
-   printf("Is type code: %d\n", isCodeInCodesByName("Blah Blah Blah", "APBGCT")); // 0
+   printf("isCodeInCodesByName 1: %d\n", isCodeInCodesByName("Clear glass", "ABGCP")); // 1
+   printf("isCodeInCodesByName 2: %d\n", isCodeInCodesByName("Clear glass", "ABCP")); // 0
+   printf("isCodeInCodesByName 3: %d\n", isCodeInCodesByName("Biodegradable waste", "BCP")); // 1
+   printf("isCodeInCodesByName 4: %d\n", isCodeInCodesByName("Blah Blah Blah", "APBGCT")); // 0
 						
-
+   printf("\n\n");
 
    // TEST isCodeInCodes()
-   printf("Is type code: %d\n", isCodeInCodes("G", "APBGCT")); // 1
-   printf("Is type code: %d\n", isCodeInCodes("L", "APBGCT")); // 0
-   printf("Is type code: %d\n", isCodeInCodes("J", "APBGCT")); // 0
+   printf("isCodeInCodes 1: %d\n", isCodeInCodes('G', "APBGCT")); // 1
+   printf("isCodeInCodes 2: %d\n", isCodeInCodes('L', "APBGCT")); // 0
+   printf("isCodeInCodes 3: %d\n", isCodeInCodes('Y', "APBGCT")); // 0
+
+   printf("\n\n");
+
+   // TEST areCodesIncluded()
+   printf("areCodesIncluded 1: %d\n", areCodesIncluded("GAT", "APBGCT")); // 1
+   printf("areCodesIncluded 2: %d\n", areCodesIncluded("LLL", "APBGCT")); // 0
+   printf("areCodesIncluded 3: %d\n", areCodesIncluded("JAB", "APBGCT")); // 0
 
    return 0;
 }
