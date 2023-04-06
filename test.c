@@ -6,7 +6,7 @@
         keep = !keep, count++) \
       for(item = (array) + count; keep; keep = !keep)
 
-#include <glib.h>
+#include <glib.h> // https://libsoup.org/glib/glib-Hash-Tables.html#g-hash-table-foreach
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
